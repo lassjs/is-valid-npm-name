@@ -67,7 +67,9 @@ if (check !== true) {
 
 ## Rule Exemption
 
-We ignore a single npm rule, which is "don't put "js" or "node" in the name.
+We ignore a single npm rule, which is:
+
+> don't put "js" or "node" in the name
 
 This is due to the sheer number of npm package name squatters.
 
