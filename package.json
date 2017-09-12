@@ -2,7 +2,7 @@
   "name": "is-valid-npm-name",
   "description":
     "Checks if a given string is a valid npm package name adhering to npm rules and best practice",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)",
   "bugs": {
     "url": "https://github.com/lassjs/is-valid-npm-name/issues",
