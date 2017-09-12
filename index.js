@@ -56,8 +56,10 @@ const isValidPackageName = str => {
   if (_builtinLibs.includes(str)) return errors.builtIn;
 
   // no non-URL-safe characters
-  const safeStr = slug(str, { custom: ['.'] });
-  if (str !== safeStr) return errors.nonURLSafe;
+  // <https://github.com/lovell/limax/issues/24>
+  const safeStr = slug(str, { custom: ['.'], separateNumbers: false });
+  if (str !== safeStr)
+    return `${errors.nonURLSafe}, try using "${safeStr}" instead`;
 
   //
   // *EXEMPTION*: due to the sheer number of npm package name squatters

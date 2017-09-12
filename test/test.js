@@ -53,9 +53,13 @@ test('built in', t => {
 });
 
 test('non-URL-safe', t => {
-  t.is(name('!'), errors.nonURLSafe);
+  t.regex(name('!'), new RegExp(errors.nonURLSafe));
 });
 
 test('had invalid scope name', t => {
   t.not(name('@beep$/baz'), true);
+});
+
+test('numbers in name without limax separating', t => {
+  t.true(name('@ladjs/i18n'), true);
 });
