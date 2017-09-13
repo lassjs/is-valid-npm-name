@@ -1,5 +1,5 @@
 const { _builtinLibs } = require('repl');
-const slug = require('limax');
+const slug = require('speakingurl');
 
 const errors = require('./errors');
 
@@ -57,7 +57,7 @@ const isValidPackageName = str => {
 
   // no non-URL-safe characters
   // <https://github.com/lovell/limax/issues/24>
-  const safeStr = slug(str, { custom: ['.'], separateNumbers: false });
+  const safeStr = slug(str);
   if (str !== safeStr)
     return `${errors.nonURLSafe}, try using "${safeStr}" instead`;
 
