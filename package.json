@@ -1,7 +1,6 @@
 {
   "name": "is-valid-npm-name",
-  "description":
-    "Checks if a given string is a valid npm package name adhering to npm rules and best practice",
+  "description": "Checks if a given string is a valid npm package name adhering to npm rules and best practice",
   "version": "0.0.4",
   "author": "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)",
   "bugs": {
@@ -12,22 +11,23 @@
     "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)"
   ],
   "dependencies": {
+    "is-string-and-not-blank": "^0.0.2",
     "speakingurl": "^14.0.1"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
-    "codecov": "^2.3.0",
-    "cross-env": "^5.0.5",
-    "eslint": "^4.5.0",
-    "eslint-config-prettier": "^2.3.0",
-    "eslint-plugin-prettier": "^2.2.0",
-    "husky": "^0.14.3",
-    "lint-staged": "^4.0.4",
-    "nyc": "^11.1.0",
-    "prettier": "^1.6.1",
-    "remark-cli": "^4.0.0",
-    "remark-preset-github": "^0.0.6",
-    "xo": "^0.19.0"
+    "ava": "^2.4.0",
+    "codecov": "^3.6.1",
+    "cross-env": "^6.0.3",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
+    "nyc": "^15.0.0",
+    "prettier": "^1.19.1",
+    "remark-cli": "^7.0.1",
+    "remark-preset-github": "^0.0.16",
+    "xo": "^0.25.3"
   },
   "engines": {
     "node": ">=8.3"
@@ -53,7 +53,10 @@
       "prettier --write --single-quote --trailing-comma none",
       "git add"
     ],
-    "*.md": ["remark . -qfo", "git add"]
+    "*.md": [
+      "remark . -qfo",
+      "git add"
+    ]
   },
   "main": "index.js",
   "nyc": {
@@ -61,10 +64,16 @@
     "lines": 100,
     "functions": 100,
     "branches": 100,
-    "reporter": ["lcov", "html", "text"]
+    "reporter": [
+      "lcov",
+      "html",
+      "text"
+    ]
   },
   "remarkConfig": {
-    "plugins": ["preset-github"]
+    "plugins": [
+      "preset-github"
+    ]
   },
   "repository": {
     "type": "git",
@@ -79,7 +88,9 @@
   },
   "xo": {
     "extends": "prettier",
-    "plugins": ["prettier"],
+    "plugins": [
+      "prettier"
+    ],
     "parserOptions": {
       "sourceType": "script"
     },

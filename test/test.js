@@ -1,14 +1,14 @@
 const test = require('ava');
 
 const errors = require('../errors');
-const name = require('../');
+const name = require('..');
 
 test('not string', t => {
   t.is(name(), errors.notString);
 });
 
 test('trim', t => {
-  t.is(name(' '), errors.trim);
+  t.is(name(' foo '), errors.trim);
 });
 
 test('max length', t => {
@@ -61,5 +61,5 @@ test('had invalid scope name', t => {
 });
 
 test('numbers in name without limax separating', t => {
-  t.true(name('@ladjs/i18n'), true);
+  t.true(name('@ladjs/i18n'));
 });

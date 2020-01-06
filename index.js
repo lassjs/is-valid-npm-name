@@ -1,4 +1,6 @@
 const { _builtinLibs } = require('repl');
+
+const isSANB = require('is-string-and-not-blank');
 const slug = require('speakingurl');
 
 const errors = require('./errors');
@@ -8,7 +10,7 @@ const isValidPackageName = str => {
   // <https://docs.npmjs.com/files/package.json#name>
 
   // ensure it's a string
-  if (typeof str !== 'string') return errors.notString;
+  if (!isSANB(str)) return errors.notString;
 
   // first trim it
   if (str !== str.trim()) return errors.trim;
@@ -17,7 +19,7 @@ const isValidPackageName = str => {
   if (str.length > 214) return errors.maxLength;
 
   // can't start with a dot or underscore
-  if (['.', '_'].includes(str.substring(0, 1))) return errors.dotUnderscore;
+  if (['.', '_'].includes(str.slice(0, 1))) return errors.dotUnderscore;
 
   // no uppercase letters
   if (str !== str.toLowerCase()) return errors.uppercase;
@@ -27,7 +29,7 @@ const isValidPackageName = str => {
   //
 
   // must have @
-  if (str.indexOf('@') !== -1) {
+  if (str.includes('@')) {
     // must have @ at beginning of string
     if (str.indexOf('@') !== 0) return errors.atFirst;
 
@@ -35,14 +37,14 @@ const isValidPackageName = str => {
     if (str.indexOf('@') !== str.lastIndexOf('@')) return errors.extraAt;
 
     // must have /
-    if (str.indexOf('/') === -1) return errors.noSlash;
+    if (!str.includes('/')) return errors.noSlash;
 
     // must have only one /
     if (str.indexOf('/') !== str.lastIndexOf('/')) return errors.extraSlash;
 
     // validate scope
     const arr = str.split('/');
-    const scope = arr[0].substring(1);
+    const scope = arr[0].slice(1);
     const isValidScopeName = isValidPackageName(scope);
 
     if (isValidScopeName !== true) return isValidScopeName;
